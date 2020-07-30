@@ -14,6 +14,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y \
   wget \
   xz-utils \
+  zip \
   git \
   curl \
   gcc \

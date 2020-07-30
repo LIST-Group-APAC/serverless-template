@@ -2,4 +2,6 @@
 
 set -e
 
-serverless deploy --stage $STAGE
+PATH=/root/.serverless/bin:$PATH
+
+serverless deploy
