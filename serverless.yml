@@ -28,7 +28,6 @@ functions:
     events:
       - http: GET /
     environment:
-      NODE_ENV: ${env:NODE_ENV}
-      NODE_APP_INSTANCE: ${env:NODE_APP_INSTANCE}
+      STAGE: ${env:STAGE}
     reservedConcurrency: 4
 
