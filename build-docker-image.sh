@@ -4,6 +4,10 @@ set -e
 
 APP=serverless
 
+if [[ ! -z "${IMAGE}" ]]; then
+  APP=${IMAGE}
+fi
+
 # parsing arguments
 while getopts 'n:y:v:?h' flag; do
   case $flag in
@@ -14,10 +18,10 @@ while getopts 'n:y:v:?h' flag; do
   esac
 done
 
-docker build -t listgr/${APP}:${VERSION} \
+docker build -t ${APP}:${VERSION} \
   --no-cache \
   --build-arg YARN_VERSION=${YARN_VERSION} \
   --build-arg NODE_VERSION=${NODE_VERSION} \
   .
 
-echo "push command: \"docker push listgr/${APP}:${VERSION}\""
+echo "push command: \"docker push ${APP}:${VERSION}\""
