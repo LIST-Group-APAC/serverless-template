@@ -1,0 +1,34 @@
+service: application
+
+custom:
+  tags:
+    stage: ${env:STAGE}
+
+provider:
+  name: aws
+  tags: ${self:custom.tags}
+
+  config: ${file(serverless/${env:NODE_ENV}.yml)}
+
+  # unable to use preset runtime if you need to build nodejs packages with binary bindings
+  runtime: nodejs12.x
+
+  stage: ${env:STAGE}
+  region: ap-southeast-1
+  timeout: 180
+  memorySize: 2048
+
+# custom package artifact in zip format
+package:
+  artifact: ./artifact.zip
+
+functions:
+  healthcheck:
+    handler: handler.healthcheck
+    events:
+      - http: GET /
+    environment:
+      NODE_ENV: ${env:NODE_ENV}
+      NODE_APP_INSTANCE: ${env:NODE_APP_INSTANCE}
+    reservedConcurrency: 4
+

@@ -1,0 +1,42 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Image Release
+
+jobs:
+  build:
+    name: build Node.js artifact
+    runs-on: ubuntu-latest
+    container: listgr/serverless:1.0.0
+
+    steps:
+      - name: get deployment stage
+        id: get_stage
+        run: echo ::set-output name=STAGE::$(echo $GITHUB_REF | cut -d / -f 3 | sed 's/_.*//g')
+
+      - uses: actions/checkout@v2
+      - run: yarn -P
+      - run: ./scripts/archive.sh
+      - name: upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: artifact.tbz2
+
+  # slack-notify:
+  #   name: slack notification
+  #   needs: deploy
+  #   runs-on: ubuntu-latest
+  #   container: listgr/slack-plugin:1.0.7
+
+  #   steps:
+  #     - name: Slack Notification
+  #       run: cd /var/app && node index.js
+  #       env:
+  #         JOB_STATUS: ${{ job.status }}
+  #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+  #         SLACK_CHANNEL: ci
+  #         SLACK_ICON: 'https://pbs.twimg.com/profile_images/561278946369495042/vrkX_baO_400x400.png'
+  #       if: always() # Pick up events even if the job fails or is canceled.
