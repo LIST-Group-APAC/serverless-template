@@ -25,7 +25,7 @@ jobs:
           AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
           AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           AWS_REGION: "${{ secrets.AWS_REGION }}"
-          STAGE: ${{ steps.get_version.outputs.STAGE }}
+          STAGE: ${{ steps.get_stage.outputs.STAGE }}
 
   # slack-notify:
   #   name: slack notification

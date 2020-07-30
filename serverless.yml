@@ -13,7 +13,7 @@ provider:
 
   stage: ${env:STAGE}
   region: ${env:AWS_REGION}
-  timeout: 180
+  timeout: 15
   memorySize: 2048
 
 # custom package artifact in zip format
