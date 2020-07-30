@@ -14,7 +14,7 @@ provider:
   runtime: nodejs12.x
 
   stage: ${env:STAGE}
-  region: ap-southeast-1
+  region: ${env:AWS_REGION}
   timeout: 180
   memorySize: 2048
 

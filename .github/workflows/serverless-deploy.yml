@@ -19,11 +19,13 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn -P
       - run: ./scripts/archive.sh
-      - name: upload artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: artifact
-          path: artifact.tbz2
+      - name: serverless deploy
+        run: ./scripts/deploy.sh
+        env:
+          AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          AWS_REGION: "${{ secrets.AWS_REGION }}"
+          STAGE: ${{ steps.get_version.outputs.STAGE }}
 
   # slack-notify:
   #   name: slack notification
