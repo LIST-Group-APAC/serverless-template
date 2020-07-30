@@ -1,8 +1,8 @@
 {
-  "name": "dummy-serverless-app",
+  "name": "serverless-template",
   "version": "1.0.0",
   "main": "handler.js",
-  "repository": "git@github.com:LIST-Group-APAC/dummy-serverless-app.git",
+  "repository": "git@github.com:LIST-Group-APAC/serverless-template.git",
   "author": "Raymond CHING <raymond-ching@list-gr.com>",
   "license": "MIT",
   "private": false

@@ -1,4 +1,4 @@
-# dummy-serverless-app
+# serverless-template
 
 ## building docker image for github actions
 
