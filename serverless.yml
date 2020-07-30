@@ -8,8 +8,6 @@ provider:
   name: aws
   tags: ${self:custom.tags}
 
-  config: ${file(serverless/${env:NODE_ENV}.yml)}
-
   # unable to use preset runtime if you need to build nodejs packages with binary bindings
   runtime: nodejs12.x
 
