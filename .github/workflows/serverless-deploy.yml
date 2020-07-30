@@ -9,7 +9,7 @@ jobs:
   build:
     name: build Node.js artifact
     runs-on: ubuntu-latest
-    container: listgr/serverless:1.0.0
+    container: listgr/serverless:1.0.1
 
     steps:
       - name: get deployment stage
